@@ -1,0 +1,36 @@
+.Registro {
+    margin: 100px;
+    margin-left: 60vh;
+    padding: 100px;
+    display: flex;
+    background-color: rgb(194, 190, 190);
+    border-radius: 10px;
+    width: 500px;
+}
+
+.Registro input {
+    margin: 30px;
+}
+
+.Registro button {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: white;
+    background-color: rgb(104, 196, 104);
+    border-radius: 10px;
+    width: 20vh;
+    height: 5vh;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.Registro button:hover {
+    cursor: pointer;
+    background-color: rgb(43, 247, 43);
+}
+
+.link {
+    font-size: 20px;
+    color: rgb(32, 67, 133);
+}

@@ -1,0 +1,23 @@
+.navbar li {
+    font-size: 25px;
+    display: inline;
+    margin: 55px;
+    
+}
+
+.navbar li:nth-child(4) {
+    font-size: 25px;
+    display: inline;
+    margin-left: 90vh;
+    
+}
+
+.navbar {
+    background-color: rgb(17, 173, 224);
+    padding: 2vh;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
