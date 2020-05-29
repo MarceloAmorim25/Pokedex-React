@@ -8,20 +8,26 @@ export default function Login() {
     const[senha, setSenha] = useState('');
     const history = useHistory();
 
-    function handleLogin(e) {
+   async function handleLogin(e) {
         e.preventDefault();
+        console.log(e);
 
-        try{
-
-            localStorage.setItem('usuario', usuario);
-            localStorage.setItem('senha', senha);
-            history.push('/home');
-
-        }catch(err) {
-            alert('Falha no login, tente novamente.')
-        }
-
+        localStorage.setItem('usuario', usuario);
+        
+            await axios
+              .post('https://pokedex20201.herokuapp.com/users', {
+                username: usuario
+              })
+              .then((res) => {
+                console.log(res);
+                history.push('/home');                
+              })
+              .catch(function (error) {
+                console.log(error);
+                alert('Falha no login, tente novamente.');
+              });
     }
+
 
     return(
 
@@ -40,21 +46,9 @@ export default function Login() {
                 />
 
                 <br />
-
-                <label>Senha:</label>
-                <input
-                    type="password" 
-                    placeholder="Sua senha" 
-                    value={senha}
-                    onChange={e => setSenha(e.target.value)}
-                />
-
-                <br />
-
+    
                 <button type="submit">Entrar</button>
 
-                <p>Não é registrado?</p>
-                <button><Link className="link" to="/registro">Registre aqui</Link></button>
 
             </form>
         </div>
