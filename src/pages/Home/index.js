@@ -4,16 +4,45 @@ import PokeBall from '../../assets/PokeBall.png';
 import Navbar from '../../navbar';
 import './style.css';
 
+   //POST /users/:username/starred/:pokemon
+   //Acrescenta pokémon à lista de favoritos de ​:username
+
 
 export default function Home() {
 
    const [data, setData] = React.useState([]);
+   const [pokemon, setPokemon] = React.useState('');
 
    React.useEffect(() => {
       axios
          .get('https://pokedex20201.herokuapp.com/pokemons')
          .then((res) => setData(res.data.data));
    }, []);
+   
+   
+      // console.log(data);
+   
+
+  function handleFavorite(e) {
+
+     e.preventDefault();
+
+     setPokemon();
+   
+     let username = localStorage.getItem('usuario');
+     console.log(username);
+      
+         axios
+           .post(`https://pokedex20201.herokuapp.com/users/${username}/starred/${pokemon}`, {           
+           })
+           .then(() => {
+             alert('Pokemon capturado!');
+           })
+           .catch(function (error) {
+             console.log(error);
+             alert('Não foi possível capturar esse Pokemon!');
+           });
+  }
 
   
    return(
