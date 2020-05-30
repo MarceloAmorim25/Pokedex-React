@@ -10,17 +10,23 @@ export default function PerfilPokemon() {
 
 
     const [data, setData] = React.useState([]);
+    const [pokemon, setPokemon] = React.useState('');
    
 
-    React.useEffect(() => {
-       axios
-          .get('https://pokedex20201.herokuapp.com/pokemons/')
-          .then((res) =>
-             setData(res.data)       
-           );
-    }, []);
- 
-    console.log(data);
+    let pokeRec = localStorage.getItem('pokemon');
+    setPokemon(pokeRec);
+
+   
+   axios
+      .get(`https://pokedex20201.herokuapp.com/pokemons/${pokemon}`)
+      .then((res) =>
+            setData(res.data)       
+      )
+      .catch((error) => 
+            console.log(error)
+      )
+   
+   console.log(data);
 
    return(
       <>
@@ -38,3 +44,4 @@ export default function PerfilPokemon() {
        
     );
 }
+
