@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import './style.css';
 
 export default function Login() {
 
-    const[usuario, setUsuario] = useState('');
-    const[senha, setSenha] = useState('');
+    
+    const[usuario, setUsuario] = useState([]);
     const history = useHistory();
+    const usuarioAtual = localStorage.getItem('usuario');
+
 
    async function handleLogin(e) {
         e.preventDefault();
-        console.log(e);
 
         localStorage.setItem('usuario', usuario);
         
+        if(usuario !== usuarioAtual) {
             await axios
               .post('https://pokedex20201.herokuapp.com/users', {
                 username: usuario
@@ -26,6 +29,9 @@ export default function Login() {
                 console.log(error);
                 alert('Falha no login, tente novamente.');
               });
+        }else {
+            history.push('/home');
+        }
     }
 
 
@@ -55,3 +61,4 @@ export default function Login() {
 
     );
 }
+
