@@ -7,7 +7,6 @@ import './style.css';
    //POST /users/:username/starred/:pokemon
    //Acrescenta pokémon à lista de favoritos de ​:username
 
-
 export default function Home() {
 
    const [data, setData] = React.useState([]);
@@ -19,16 +18,17 @@ export default function Home() {
          .then((res) => setData(res.data.data));
    }, []);
    
+   console.log(data);
    
-      // console.log(data);
-   
-
-  function handleFavorite(e) {
+  function handleFav(e, id) {
 
      e.preventDefault();
 
-     setPokemon();
-   
+     let poke = localStorage.setItem('pokemon', data[id].name);
+     console.log(poke);
+
+     setPokemon(poke);
+
      let username = localStorage.getItem('usuario');
      console.log(username);
       
@@ -44,7 +44,6 @@ export default function Home() {
            });
   }
 
-  
    return(
       <>
          <Navbar />
@@ -71,7 +70,7 @@ export default function Home() {
                                  <strong>DESCRIÇÃO: </strong>
                                  <p>{pokemon.weight}</p>                                                                    
 
-                                 <button type="button"><img id="capturar" src={PokeBall} alt=""/></button>
+                                 <button type="button" onClick={handleFav}><img id="capturar" src={PokeBall} alt=""/></button>
                                  
 
                               </div>
@@ -84,3 +83,4 @@ export default function Home() {
        
     );
 }
+
