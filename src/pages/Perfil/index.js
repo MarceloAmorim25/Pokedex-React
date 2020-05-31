@@ -1,28 +1,51 @@
 import React from 'react';
 import Navbar from '../../navbar';
-import './style.css';
-
+import axios from 'axios';
 import Ash from '../../assets/ash.png'
 
-export default function Perfil() {
-    return(
 
+export default function Perfil()  {
+
+   const [user, setUser] = React.useState({});
+   const [pokemons, setPokemons] = React.useState([]);
+   let usuario = localStorage.getItem('usuario');
+
+  React.useEffect(() => {
+      axios
+         .get(`https://pokedex20201.herokuapp.com/users/${usuario}`)
+         .then(res => {
+            setUser(res.data.user)
+            setPokemons(res.data.pokemons)});
+   }, [usuario]);
+ 
+   const handleDelete = (pokemon) => {
+
+    let usuario = localStorage.getItem('usuario');  
+       
+    axios
+        .delete(`https://pokedex20201.herokuapp.com/users/${usuario}/starred/${pokemon}`)
+        .then(res => console.log(res));
+        window.location.reload(false);
+    };
+ 
+    return(
+        <>
+        <Navbar />         
         <div className="perfil">
-            <Navbar />          
             <div className="pokedex">
-                <img src={Ash} alt=""/> 
-                <h1>Pokemons Capturados</h1>
-            </div>   
-            <div className="descricao">
-                <ul>
-                    <li>Nome: </li>
-                    <li>Sobrenome: </li>
-                    <li>Cidade: </li>
-                    <li>Pokemon Preferido: </li>
-                    <li>Contato: </li>
-                </ul>
-            </div> 
-                 
+                <img className="ash" src={Ash} alt=""/> 
+            </div>
+                <h1 className="usuario">{user.username}</h1>
+                <h3> Pokemons favoritos: {pokemons.length}</h3>
+                <div className="favoritos">
+                {pokemons.map(p => (
+                    <>
+                    <img className="pokemon" src={p.image_url} alt=""/>
+                    <button onClick={() => handleDelete(p.name)}>Delete: {p.name}</button>
+                    </>
+                ))}
+                </div>      
         </div>
+        </>
     );
 }
