@@ -1,48 +1,47 @@
 import React from 'react';
 import axios from 'axios';
-import PokeBall from '../../assets/PokeBall.png';
 import Navbar from '../../navbar';
+import { useHistory } from 'react-router-dom';
 import './style.css';
 
-   //POST /users/:username/starred/:pokemon
-   //Acrescenta pokémon à lista de favoritos de ​:username
 
 export default function Home() {
 
    const [data, setData] = React.useState([]);
-   const [pokemon, setPokemon] = React.useState('');
+   const list = [];
+   
+   const history = useHistory();
+
+   //GET => recebendo os dados dos pokemons
 
    React.useEffect(() => {
       axios
          .get('https://pokedex20201.herokuapp.com/pokemons')
          .then((res) => setData(res.data.data));
    }, []);
-   
+
+   //atribuindo um característica de não clicado para cada pokemon
+
+   data.map(k => {
+      return list.push(k.clicked = false);
+   })
+
    console.log(data);
-   
-  function handleFav(e, id) {
 
-     e.preventDefault();
+    //essa função encaminha para a página de descrição.
+    //Primeiro ela salva no localStorage o nome do pokemon clicado
+    //Depois redireciona para a página de descrição
 
-     let poke = localStorage.setItem('pokemon', data[id].name);
-     console.log(poke);
+   function Description() {
+      data.map(p => {
+         if(p.clicked === true) {
+            localStorage.setItem('pokemons', p.name)
+         }
+         return p.name;
+      })
 
-     setPokemon(poke);
-
-     let username = localStorage.getItem('usuario');
-     console.log(username);
-      
-         axios
-           .post(`https://pokedex20201.herokuapp.com/users/${username}/starred/${pokemon}`, {           
-           })
-           .then(() => {
-             alert('Pokemon capturado!');
-           })
-           .catch(function (error) {
-             console.log(error);
-             alert('Não foi possível capturar esse Pokemon!');
-           });
-  }
+      history.push("/pokemon");      
+   }
 
    return(
       <>
@@ -50,32 +49,30 @@ export default function Home() {
           {data && (           
                   <div className="deck">
                      {data.map(pokemon => (
-                           <span key={pokemon.id}>
+                                                
+                              <div className="pokeCard" key={pokemon.id}>
 
-                              <div className="pokeCard">
+                                    <img src={pokemon.image_url} alt=""/>
 
-                                 <img src={pokemon.image_url} alt=""/>
+                                    <br/>
 
-                                 <br/>
+                                    <strong>ALTURA:</strong>
+                                    <p>{pokemon.height}</p>
 
-                                 <strong>ALTURA:</strong>
-                                 <p>{pokemon.height}</p>
+                                    <strong>TIPO:</strong>
+                                    <p>{pokemon.kind}</p>
 
-                                 <strong>TIPO:</strong>
-                                 <p>{pokemon.kind}</p>
+                                    <strong>NOME:</strong>
+                                    <p>{pokemon.name}</p>
 
-                                 <strong>NOME:</strong>
-                                 <p>{pokemon.name}</p>
+                                    <strong>DESCRIÇÃO: </strong>
+                                    <p>{pokemon.weight}</p>                                                                    
 
-                                 <strong>DESCRIÇÃO: </strong>
-                                 <p>{pokemon.weight}</p>                                                                    
+                                 <div>
+                                    <button type="button" onClick={Description} onMouseOver={() => pokemon.clicked = true}>Descrição</button>
+                                 </div>
 
-                                 <button type="button" onClick={handleFav}><img id="capturar" src={PokeBall} alt=""/></button>
-                                 
-
-                              </div>
-
-                           </span>                      
+                           </div>                                                                                                                  
                      ))}
                 </div>                
             )}
@@ -83,4 +80,3 @@ export default function Home() {
        
     );
 }
-
