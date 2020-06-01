@@ -8,25 +8,33 @@ import './style.css';
 export default function Home() {
 
    const [data, setData] = React.useState([]);
+   const [number, setNumber] = React.useState(1);
    const list = [];
-   
+
    const history = useHistory();
 
    //GET => recebendo os dados dos pokemons
 
-   React.useEffect(() => {
-      axios
-         .get('https://pokedex20201.herokuapp.com/pokemons')
-         .then((res) => setData(res.data.data));
-   }, []);
+   React.useEffect(
+      
+      () => {
+
+         axios
+         .get(`https://pokedex20201.herokuapp.com/pokemons?page=${number}`)
+         .then(function resp(res){
+
+            setData(res.data.data);
+            console.log(res);
+         })
+
+   }, [number]);
+
 
    //atribuindo um característica de não clicado para cada pokemon
 
    data.map(k => {
       return list.push(k.clicked = false);
    })
-
-   console.log(data);
 
     //essa função encaminha para a página de descrição.
     //Primeiro ela salva no localStorage o nome do pokemon clicado
@@ -46,6 +54,14 @@ export default function Home() {
    return(
       <>
          <Navbar />
+
+      <div className="botoesPaginacao">
+         <button className="botoesProximoAnterior" onClick={() => setNumber(number - 1)}>Página Anterior</button>
+         <button className="botoesProximoAnterior" onClick={() => setNumber(number + 1)}>Próxima Página</button>         
+      </div>
+
+      <div className="pagina">Página: {number}</div>
+
           {data && (           
                   <div className="deck">
                      {data.map(pokemon => (
@@ -76,7 +92,14 @@ export default function Home() {
                      ))}
                 </div>                
             )}
+
+               <div className="botoesPaginacao">
+                  <button className="botoesProximoAnterior" onClick={() => setNumber(number - 1)}>Página Anterior</button>
+                  <button className="botoesProximoAnterior" onClick={() => setNumber(number + 1)}>Próxima Página</button>         
+               </div>
+              
       </>
        
     );
 }
+
