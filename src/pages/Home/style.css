@@ -1,8 +1,9 @@
+
 .pokeCard {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border: 2px solid rgb(235, 216, 216);
     margin: 50px;
-    height: 500px;
+    height: 550px;
     padding: 30px;
 }
 
@@ -42,5 +43,38 @@
     border-radius: 100%;
     width: 50px;
     height: 50px;
+}
+
+#description {
+    background-color: lightgrey;
+}
+
+#description:hover {
+    background-color: lightskyblue;
+}
+
+.botoesPaginacao {
+    display: flex;
+}
+
+.botoesProximoAnterior:nth-child(1) { 
+    margin-top: 50px;  
+    margin-left: 500px;
+    padding: 20px;
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.botoesProximoAnterior:nth-child(2) { 
+    margin-top: 50px;  
+    padding: 20px;
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.pagina {
+    display: center;
+    margin-left: 500px;
+    margin-top: 30px;
 }
 
