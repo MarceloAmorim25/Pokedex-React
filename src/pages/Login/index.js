@@ -58,26 +58,28 @@ export default function Login() {
 
     return(
 
-        <div class="Login">
-            <form  onSubmit={handleLogin}>
+        <div className="box-container">
+          <div className="box">
+              <form  onSubmit={handleLogin}>
 
-                <h1>Página de Login</h1>
+                  <h1>Página de Login</h1>
 
-                <label>Usuário:</label>
+                  <label>Usuário:</label>
 
-                <input
-                     id="input"
-                     type="text"
-                     placeholder="Login" 
-                     value={usuario}
-                     onChange={e => setUsuario(e.target.value)}
-                />
+                  <input
+                      id="input"
+                      type="text"
+                      placeholder="Login" 
+                      value={usuario}
+                      onChange={e => setUsuario(e.target.value)}
+                  />
 
-                <br />
-    
-                <button type="submit">Entrar</button>
+                  <br />
+      
+                  <button type="submit">Entrar</button>
 
-            </form>
+              </form>
+            </div>
         </div>
 
     );
