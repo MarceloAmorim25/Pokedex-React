@@ -6,42 +6,35 @@ import './style.css';
 export default function Login() {
 
     
-    const[usuario, setUsuario] = useState([]);
+    const[usuario, setUsuario] = useState('');
     const[data, setData] = useState([]);
-    const history = useHistory();
-    let list = [];
-    let login = 0;
-    // const usuarioAtual = localStorage.getItem('usuario');
-
+    const history = useHistory(); 
+    
+    
     React.useEffect(() => {
-      axios
-         .get(`https://pokedex20201.herokuapp.com/users`)
-         .then((res) => {
-           setData(res.data.data)
-           console.log(res.data.data)
-          });
-   }, []);
 
-   data.map(k => {
-     list.push(k.username);
-     return list;
-   })
+      if(usuario.length !== 0){
 
-   for(let i=0; i<list.length; i++) {
-     if(list[i] === usuario) {
-        login = 1;
-     }
+        axios
+          .get(`https://pokedex20201.herokuapp.com/users/${usuario}`)
+          .then((res) => {
+            setData(res.data.user.username)
+          })
+          .catch(function(error) {
+            console.log(error);
+          })
 
-   } 
+      }
 
-   console.log(list);
+   }, [usuario])
 
-   async function handleLogin(e) {
+   localStorage.setItem('usuario', usuario);
+
+   async function handleLogin(e) { 
+     
         e.preventDefault();
-
-        localStorage.setItem('usuario', usuario);
-             
-        if(login === 1) {
+                       
+        if(usuario === data) {
 
           history.push('/home');
           alert('Login autorizado...');
@@ -66,15 +59,16 @@ export default function Login() {
     return(
 
         <div class="Login">
-            <form onSubmit={handleLogin}>
+            <form  onSubmit={handleLogin}>
 
                 <h1>Página de Login</h1>
 
                 <label>Usuário:</label>
 
                 <input
+                     id="input"
                      type="text"
-                     placeholder="Seu login" 
+                     placeholder="Login" 
                      value={usuario}
                      onChange={e => setUsuario(e.target.value)}
                 />
@@ -83,10 +77,10 @@ export default function Login() {
     
                 <button type="submit">Entrar</button>
 
-
             </form>
         </div>
 
     );
 }
+
 
