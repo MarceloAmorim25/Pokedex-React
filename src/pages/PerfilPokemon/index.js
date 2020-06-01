@@ -48,18 +48,23 @@ export default function PerfilPokemon() {
       <>
          <Navbar />  
 
-         <div>
-            <div><h1>{data.name}</h1></div>
-            <div><h1><img src={data.image_url} alt="pokemon"/></h1></div>
-            <div><h1>{data.height}</h1></div>
-            <div><h1>{data.weight}</h1></div>
-            <div><h1>{data.kind}</h1></div>
-            <div><button onClick={handleFav}><img src={PokeBall} alt="pokemon"/></button></div>            
+         <div className="container-pokemon">
+            <div className="descricao">
+               <div><h1>{data.name}</h1></div>
+               <div><h1><img src={data.image_url} alt="pokemon"/></h1></div>
+            </div>
+
+            <div className="habilidades">
+               <div><h1>{data.height}</h1></div>
+               <div><h1>{data.weight}</h1></div>
+               <div><h1>{data.kind}</h1></div>
+               <div><button onClick={handleFav}><img src={PokeBall} alt="pokemon"/></button></div> 
+
+            </div>                       
          </div>
          
       </>
        
     );
 }
-
 
