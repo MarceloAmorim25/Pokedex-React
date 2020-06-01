@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../navbar';
 import axios from 'axios';
 import Ash from '../../assets/ash.png'
+import './style.css';
 
 
 export default function Perfil()  {
@@ -32,20 +33,22 @@ export default function Perfil()  {
     return(
         <>
         <Navbar />         
-        <div className="perfil">
+        <div className="box-container-perfil">
             <div className="pokedex">
                 <img className="ash" src={Ash} alt=""/> 
             </div>
-                <h1 className="usuario">{user.username}</h1>
+                <div className="usuario"> <strong>Usuário: {user.username}</strong></div>
                 <h3> Pokemons favoritos: {pokemons.length}</h3>
-                <div className="favoritos">
+                
                 {pokemons.map(p => (
                     <>
-                    <img className="pokemon" src={p.image_url} alt=""/>
-                    <button onClick={() => handleDelete(p.name)}>Delete: {p.name}</button>
+                    <div className="favoritos">
+                    <img className="pokemonImagem" src={p.image_url} alt=""/>
+                    <button onClick={() => handleDelete(p.name)} className="pokemonNome">Delete: {p.name}</button>
+                    </div>
                     </>
                 ))}
-                </div>      
+                     
         </div>
         </>
     );
