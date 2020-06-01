@@ -17,12 +17,13 @@ export default function Perfil()  {
             setUser(res.data.user)
             setPokemons(res.data.pokemons)});
    }, [usuario]);
- 
-   const handleDelete = (pokemon) => {
 
-    let usuario = localStorage.getItem('usuario');  
+ 
+   const handleDelete = async (pokemon) => { 
+
+    console.log(pokemon);
        
-    axios
+    await axios
         .delete(`https://pokedex20201.herokuapp.com/users/${usuario}/starred/${pokemon}`)
         .then(res => console.log(res));
         window.location.reload(false);
