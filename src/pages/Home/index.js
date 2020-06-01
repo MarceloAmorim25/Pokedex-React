@@ -62,6 +62,8 @@ export default function Home() {
 
       <div className="pagina">Página: {number}</div>
 
+      <div className="container-home">
+
           {data && (           
                   <div className="deck">
                      {data.map(pokemon => (
@@ -76,10 +78,10 @@ export default function Home() {
                                     <p>{pokemon.height}</p>
 
                                     <strong>TIPO:</strong>
-                                    <p>{pokemon.kind}</p>
+                                    <p className="tipo">{pokemon.kind}</p>
 
                                     <strong>NOME:</strong>
-                                    <p>{pokemon.name}</p>
+                                    <p className="nome">{pokemon.name}</p>
 
                                     <strong>DESCRIÇÃO: </strong>
                                     <p>{pokemon.weight}</p>                                                                    
@@ -92,6 +94,8 @@ export default function Home() {
                      ))}
                 </div>                
             )}
+
+            </div>
 
                <div className="botoesPaginacao">
                   <button className="botoesProximoAnterior" onClick={() => setNumber(number - 1)}>Página Anterior</button>
