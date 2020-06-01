@@ -1,0 +1,50 @@
+.container-pokemon{
+    display: flex;
+    background-color: rgb(88, 88, 88);
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-transform: capitalize;
+
+
+}
+.descricao {
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px 0 0 15px;
+    width: 25%;
+    height:50%;
+    position: relative;
+    float: left;
+    padding: 5px;
+
+}
+.habilidades {
+    background-color: rgb(17, 173, 224);
+    float: right;
+    position: relative;
+    padding: 5px;
+    width: 25%;
+    height: 50%;
+    border-radius: 0 15px 15px 0;
+
+}
+.capturar{
+    border-radius: 50%;
+    border: none;
+    width: 100px;
+    position: relative;
+    float: right;
+    right: 40px;
+}
+.capturar:hover {
+    background-color:  rgb(34, 126, 18);
+    cursor: pointer;
+}
+.perfilPoke {
+    height: 200px;
+    position: relative;
+    float: left;
+}
