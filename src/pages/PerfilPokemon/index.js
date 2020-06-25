@@ -1,8 +1,8 @@
 import React from 'react';
 import Navbar from '../../navbar';
 import axios from 'axios';
-import PokeBall from '../../assets/PokeBall.png';
-import './estilo.css';
+import PokeBall from '../../assets/pokebola.gif';
+import './style.css';
 
 export default function PerfilPokemon() {
 
@@ -49,19 +49,23 @@ export default function PerfilPokemon() {
          <Navbar />  
 
          <div className="container-pokemon">
-            <div className="descricao">
-               <div><h1>{data.name}</h1></div>
-               <div><h1><img src={data.image_url} alt="pokemon"/></h1></div>
-            </div>
-
-            <div className="habilidades">
-               <div><h1>{data.height}</h1></div>
-               <div><h1>{data.weight}</h1></div>
-               <div><h1>{data.kind}</h1></div>
-               <div><button onClick={handleFav}><img src={PokeBall} alt="pokemon"/></button></div> 
-
-            </div>                       
+         <div className="descricao">
+            <h1>{data.name}</h1>
+            <img className="perfilPoke" src={data.image_url} alt="pokemon"/>
+            <img onClick={handleFav} className="capturar" src={PokeBall} alt="pokemon"/>
+            <span>Capturar</span>
          </div>
+         <div className="habilidades">
+            <h1>Altura</h1>
+            {data.height}
+            <h1>Peso</h1>
+            {data.weight}
+            <h1>Tipo</h1>
+            {data.kind}
+         </div>
+         
+
+      </div>
          
       </>
        

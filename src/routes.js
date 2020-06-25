@@ -12,8 +12,7 @@ export default function Routes() {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Login} />
-                <Route path="/home" component={Home} />
-            
+                <Route path="/home" component={Home} />           
                 <Route path="/perfil" component={Perfil} />
                 <Route path="/pokemon" component={PerfilPokemon} />
             </Switch>

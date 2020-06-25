@@ -1,50 +1,53 @@
+:root {
+    --azul:  rgb(17, 173, 224);
+    --sombra: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
 .container-pokemon{
     display: flex;
-    background-color: rgb(88, 88, 88);
     position: absolute;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
     text-transform: capitalize;
-
-
+    background-image: url('../../assets/loginBackground.png');
 }
 .descricao {
     background-color: white;
-    padding: 10px;
     border-radius: 15px 0 0 15px;
-    width: 25%;
-    height:50%;
+    width: 20%;
+    height:45%;
     position: relative;
+    padding: 0 0 0 30PX;
     float: left;
-    padding: 5px;
+    box-shadow: var(--sombra);
+    align-items: center;
+    text-align: center;
+}
+.descricao img{
+    display: block;
+    margin: 0 auto;
 
 }
 .habilidades {
-    background-color: rgb(17, 173, 224);
+    background-color: var(--azul);
     float: right;
-    position: relative;
-    padding: 5px;
-    width: 25%;
-    height: 50%;
+    padding: 0 0 0 30px; 
+    width: 20%;
+    height: 45%;
     border-radius: 0 15px 15px 0;
-
+    box-shadow: var(--sombra);
 }
 .capturar{
     border-radius: 50%;
     border: none;
     width: 100px;
-    position: relative;
-    float: right;
     right: 40px;
 }
 .capturar:hover {
-    background-color:  rgb(34, 126, 18);
+    box-shadow: var(--sombra);
     cursor: pointer;
 }
 .perfilPoke {
     height: 200px;
-    position: relative;
-    float: left;
 }

@@ -35,20 +35,19 @@ export default function Perfil()  {
         <Navbar />         
         <div className="box-container-perfil">
             <div className="pokedex">
-                <img className="ash" src={Ash} alt=""/> 
-            </div>
-                <div className="usuario"> <strong>Usuário: {user.username}</strong></div>
+            <img className="ash" src={Ash} alt=""/> 
+                <h1 className="usuario">{user.username}</h1>
                 <h3> Pokemons favoritos: {pokemons.length}</h3>
-                
+                <div className="pokemonsFavoritos">
                 {pokemons.map(p => (
-                    <>
                     <div className="favoritos">
-                    <img className="pokemonImagem" src={p.image_url} alt=""/>
-                    <button onClick={() => handleDelete(p.name)} className="pokemonNome">Delete: {p.name}</button>
-                    </div>
-                    </>
+                        <img className="pokemonImagem" src={p.image_url} onClick={() => handleDelete(p.name)} alt=""/>
+                        <span className="pokemonNome">{p.name}</span>
+                    </div> 
                 ))}
-                     
+                </div>
+
+            </div>     
         </div>
         </>
     );

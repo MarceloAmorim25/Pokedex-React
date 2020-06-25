@@ -68,41 +68,26 @@ export default function Home() {
                   <div className="deck">
                      {data.map(pokemon => (
                                                 
-                              <div className="pokeCard" key={pokemon.id}>
+                              <div className="pokeCard" key={pokemon.id} onClick={Description} onMouseOver={() => pokemon.clicked = true}>
 
                                     <img src={pokemon.image_url} alt=""/>
 
                                     <br/>
-
-                                    <strong>ALTURA:</strong>
-                                    <p>{pokemon.height}</p>
-
-                                    <strong>TIPO:</strong>
+                                    <p className="numero">Nº: {pokemon.id}</p>
+                                    <p className="nome">{pokemon.name}</p>                                                                   
                                     <p className="tipo">{pokemon.kind}</p>
-
-                                    <strong>NOME:</strong>
-                                    <p className="nome">{pokemon.name}</p>
-
-                                    <strong>DESCRIÇÃO: </strong>
-                                    <p>{pokemon.weight}</p>                                                                    
-
-                                 <div>
-                                    <button type="button" onClick={Description} onMouseOver={() => pokemon.clicked = true}>Descrição</button>
-                                 </div>
 
                            </div>                                                                                                                  
                      ))}
                 </div>                
             )}
 
-            </div>
-
+         </div>
                <div className="botoesPaginacao">
                   <button className="botoesProximoAnterior" onClick={() => setNumber(number - 1)}>Página Anterior</button>
                   <button className="botoesProximoAnterior" onClick={() => setNumber(number + 1)}>Próxima Página</button>         
                </div>
-              
-      </>
+     </>
        
     );
 }
